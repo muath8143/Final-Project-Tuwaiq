@@ -58,7 +58,7 @@
 | Workflow Integration | n8n Webhook |
 | AI | OpenAI |
 | PDF Generation | Thymeleaf HTML template → PDF |
-| Email | [Fill: mail provider / library if you want to mention it] |
+| Email | sijal.website@gmail.com |
 
 ---
 
