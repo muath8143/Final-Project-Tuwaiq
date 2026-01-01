@@ -1,16 +1,29 @@
-<h1>Sijal – AI-Powered Interview Preparation Platform</h1>
+<h1>Sijal (سِجال) – AI-Powered Interview Preparation Platform</h1>
 
 <p>
-Sijal is an intelligent interview preparation platform designed to help job seekers
-experience realistic interview simulations and receive actionable feedback.
-The platform combines AI-powered analysis with human HR evaluation to provide
+<strong>Sijal (سِجال)</strong> is an AI-powered interview preparation platform designed to help job seekers
+experience realistic interview simulations and receive actionable, structured feedback.
+The platform combines artificial intelligence with human HR evaluation to deliver
 a comprehensive and practical interview readiness experience.
 </p>
 
 <p>
-Users can start interview sessions based on their CV or a job description,
-participate in voice-based interviews, and receive detailed performance evaluations,
-including strengths, weaknesses, and personalized improvement plans.
+Users can initiate interview sessions based on their CV or a specific job description,
+participate in voice-based interview simulations, and receive detailed performance evaluations
+including strengths, weaknesses, final scores, and personalized improvement plans.
+</p>
+
+<p>
+سِجال هي منصة ذكية للاستعداد للمقابلات الوظيفية، تهدف إلى محاكاة بيئة المقابلات الواقعية
+وتحليل أداء المتقدم بشكل عملي ودقيق.
+تعتمد المنصة على الذكاء الاصطناعي إلى جانب التقييم الاحترافي من مختصي الموارد البشرية
+لتقديم تجربة شاملة تعكس متطلبات سوق العمل الحقيقي.
+</p>
+
+<p>
+تمكّن المنصة المستخدم من إنشاء جلسة مقابلة بناءً على سيرته الذاتية أو الوصف الوظيفي،
+الدخول في مقابلة صوتية تفاعلية، ثم الحصول على تقرير تفصيلي يشمل التقييم النهائي،
+نقاط القوة، نقاط الضعف، وخطة تطوير شخصية مدعومة بالذكاء الاصطناعي.
 </p>
 
 <hr/>
