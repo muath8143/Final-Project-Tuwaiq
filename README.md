@@ -1,174 +1,102 @@
-# Abdulmajed’s Contributions
+<h1>Sijal – AI-Powered Interview Preparation Platform</h1>
 
----
+<p>
+Sijal is an intelligent interview preparation platform designed to help job seekers
+experience realistic interview simulations and receive actionable feedback.
+The platform combines AI-powered analysis with human HR evaluation to provide
+a comprehensive and practical interview readiness experience.
+</p>
 
-##  Roles
-- **Owner / Contributor:** Abdulmajed
-- **Area:** Backend (Security + Auth + Customer + CV + Integrations)
-- **Access:** JWT-based authentication + roles/authorities integration
+<p>
+Users can start interview sessions based on their CV or a job description,
+participate in voice-based interviews, and receive detailed performance evaluations,
+including strengths, weaknesses, and personalized improvement plans.
+</p>
 
----
+<hr/>
 
-##  Workflow
-1. **Authentication**
-   - User logs in → receives **JWT token**
-   - Token is used to access protected endpoints based on **roles/authorities**
-2. **Customer Module**
-   - Customer registers
-   - Customer manages account (update/delete)
-3. **CV Module**
-   - Authenticated user can manage CV (CRUD + “My CV” retrieval)
-4. **CV Upload Pipeline**
-   - Upload CV PDF
-   - Extract text from PDF (PDFBox)
-   - Send extracted text to **n8n webhook** for parsing
-   - Map parsed fields and save CV
-5. **PDF Output**
-   - Generate CV as PDF and download as attachment
-6. **Email Delivery**
-   - Send generated CV PDF to a recipient email
-7. **AI Recommendations**
-   - Retrieve CV improvement suggestions via **OpenAI** endpoint
+<h2>Key Features</h2>
+<ul>
+  <li>AI-generated interview sessions based on CV or job description</li>
+  <li>Voice-based interview simulation using AI agents</li>
+  <li>Automated interview analysis with scoring and detailed feedback</li>
+  <li>HR-led interview evaluation and professional assessment</li>
+  <li>AI-generated personalized improvement and development plans</li>
+  <li>Secure authentication and authorization using JWT</li>
+  <li>Email notifications for interview session details</li>
+</ul>
 
----
+<hr/>
 
-##  Key Features (Implemented by Abdulmajed)
-- Spring Security configuration (**JWT + roles/authorities integration**)
-- JWT Filter + password encoding (**PasswordEncoder**)
-- Authentication flow (**Login → JWT token**)
-- Customer module endpoints (**register + account management**)
-- CV module (**CRUD + “My CV” retrieval**)
-- CV upload flow (**PDF upload → extract text → n8n parse → save CV**)
-- CV PDF generation endpoint (**download as attachment**)
-- CV email sending endpoint (**send generated CV PDF to recipient**)
-- OpenAI CV recommendations endpoint (**cvImprovementSuggestions usage**)
-- CV PDF HTML template using **Thymeleaf** (professional resume layout used in PDF generation)
-- Overall backend architecture + initialized project scaffolding (packages/modules/folders)
-- Shared conventions and base layers (DTO IN/OUT, Advice/exception handling structure, validation groups, Thymeleaf templates setup)
+<h2>System Workflow</h2>
+<ol>
+  <li>User creates an interview session using CV or job description</li>
+  <li>Interview questions are generated dynamically</li>
+  <li>User joins a voice interview by calling the provided number</li>
+  <li>Interview is recorded and transcribed automatically</li>
+  <li>AI analyzes the interview and generates structured feedback</li>
+  <li>HR evaluation and scoring are added when applicable</li>
+  <li>User receives a detailed analysis and improvement plan</li>
+</ol>
 
----
+<hr/>
 
-## Tech Stack (Relevant to my scope)
-| Area | Technology |
-|---|---|
-| Backend | Spring Boot |
-| Security | Spring Security + JWT |
-| Password Hashing | PasswordEncoder |
-| PDF Text Extraction | PDFBox |
-| Workflow Integration | n8n Webhook |
-| AI | OpenAI |
-| PDF Generation | Thymeleaf HTML template → PDF |
-| Email | sijal.website@gmail.com |
+<h2>Tech Stack</h2>
+<table border="1" cellpadding="8">
+  <tr><th>Area</th><th>Technology</th></tr>
+  <tr><td>Backend</td><td>Spring Boot, Spring MVC, Spring Data JPA</td></tr>
+  <tr><td>Security</td><td>Spring Security, JWT, BCrypt</td></tr>
+  <tr><td>Database</td><td>MySQL (AWS RDS)</td></tr>
+  <tr><td>AI Integration</td><td>OpenAI API</td></tr>
+  <tr><td>Voice Interviews</td><td>Vapi AI</td></tr>
+  <tr><td>Email Service</td><td>Spring Boot Mail (SMTP)</td></tr>
+  <tr><td>Deployment</td><td>AWS Elastic Beanstalk, EC2</td></tr>
+</table>
 
----
+<hr/>
 
-##  Configuration (What this module needs)
-> Fill these with the real names/keys you used in `application.properties` or env.
+<h2>API Endpoints Overview</h2>
+<table border="1" cellpadding="8">
+  <tr>
+    <th>#</th><th>Method</th><th>Endpoint</th><th>Description</th>
+  </tr>
 
-- **JWT**
-  - `JWT_SECRET` = CHANGE_ME_TO_A_LONG_RANDOM_SECRET
-  - `JWT_TTL_SECONDS` = [3600]
-- **n8n**
-  - `N8N_WEBHOOK_URL` = [[Fill](https://sijal.app.n8n.cloud/workflow/pauA38yBNBBvbj6d)]
-- **OpenAI**
-  - `OPENAI_API_KEY` = [************]
-- **Email**
-  - `MAIL_HOST` = [smtp.gmail.com]
-  - `MAIL_PORT` = [587]
-  - `MAIL_USERNAME` = [sijal.website@gmail.com]
-  - `MAIL_PASSWORD` = [*************]
+  <tr><td>1</td><td>GET</td><td>/health</td><td>Application health check</td></tr>
 
----
+  <tr><td>2</td><td>POST</td><td>/api/v1/interview-session/start-session-with-cv</td><td>Start interview using CV</td></tr>
+  <tr><td>3</td><td>POST</td><td>/api/v1/interview-session/start-session-with-description</td><td>Start interview using job description</td></tr>
+  <tr><td>4</td><td>GET</td><td>/api/v1/interview-session/get-my-sessions</td><td>Retrieve user interview sessions</td></tr>
+  <tr><td>5</td><td>GET</td><td>/api/v1/interview-session/get-session-by-id/{id}</td><td>Retrieve session details</td></tr>
+  <tr><td>6</td><td>GET</td><td>/api/v1/interview-session/get_question/{sessionId}</td><td>Retrieve session questions</td></tr>
 
-##  Project Structure (Related packages / modules)
-- `config/` → security configuration, JWT setup, filters
-- `controllers/` → Auth, Customer, CV endpoints
-- `services/` → CV logic, PDF parsing, n8n integration, OpenAI integration, PDF generation
-- `repositories/` → persistence layer for customer/CV
-- `dtos/` → DTO IN/OUT + validation groups
-- `advice/` → exception handling structure
-- `resources/templates/` → `resume.html` (Thymeleaf)
+  <tr><td>7</td><td>GET</td><td>/api/v1/analysis-by-ai/all-analysis</td><td>Retrieve all AI analyses</td></tr>
+  <tr><td>8</td><td>GET</td><td>/api/v1/analysis-by-ai/analysis-for-session/{sessionId}</td><td>Retrieve analysis for a specific session</td></tr>
 
----
+  <tr><td>9</td><td>GET</td><td>/api/v1/questions/questions-for-session/{sessionId}</td><td>Retrieve interview questions</td></tr>
 
-##  Security Notes
-- Stateless JWT authentication
-- Role/authority-based access for protected endpoints
-- Public endpoints: customer registration + login (as per design)
-- CV operations are protected for authenticated users
+  <tr><td>10</td><td>POST</td><td>/api/v1/vapi/webhook</td><td>Handle voice interview webhook</td></tr>
+</table>
 
----
+<hr/>
 
-# API Endpoints (Abdulmajed)
+<h2>Deployment</h2>
+<p>
+The backend application is deployed on AWS using a scalable and production-ready setup.
+AWS Elastic Beanstalk is used for application hosting, with EC2 handling compute resources
+and RDS (MySQL) managing persistent data storage.
+</p>
 
-## Auth
-| Method | Endpoint | Description | Auth |
-|---|---|---|---|
-| POST | `/api/v1/auth/login` | Login and return JWT token | No |
-| GET  | `/api/v1/auth/test/role` | Return current user authorities (debug) | Yes |
+<p>
+The system includes health checks and monitoring to ensure application availability
+and stability in production.
+</p>
 
----
+<hr/>
 
-## Customer
-| Method | Endpoint | Description | Auth |
-|---|---|---|---|
-| POST | `/api/v1/customer/register-customer` | Register a new customer | No |
-| GET  | `/api/v1/customer/get-customers` | Get all customers | (Project rules) |
-| PUT  | `/api/v1/customer/update-customer` | Update authenticated customer | Yes |
-| DELETE | `/api/v1/customer/delete-customer` | Delete authenticated customer | Yes |
-
----
-
-## CV
-| Method | Endpoint | Description | Auth |
-|---|---|---|---|
-| GET | `/api/v1/cv/get-all-cv` | Get all CVs | (Project rules) |
-| GET | `/api/v1/cv/get-my-cv` | Get CV for authenticated user | Yes |
-| POST | `/api/v1/cv/create-cv` | Create CV for authenticated user | Yes |
-| PUT | `/api/v1/cv/update-cv` | Update CV for authenticated user | Yes |
-| DELETE | `/api/v1/cv/delete-cv` | Delete CV for authenticated user | Yes |
-
----
-
-## CV Upload
-| Method | Endpoint | Description | Auth |
-|---|---|---|---|
-| POST | `/api/v1/cv/upload-cv` | Upload CV PDF, extract text, parse via n8n, then save CV | Yes |
-
----
-
-## CV PDF
-| Method | Endpoint | Description | Auth |
-|---|---|---|---|
-| GET | `/api/v1/cv/download-generate-cv` | Generate and download CV as PDF (attachment) | Yes |
-
----
-
-## CV Email
-| Method | Endpoint | Description | Auth |
-|---|---|---|---|
-| POST | `/api/v1/cv/send-cv-to-email` | Send generated CV PDF to a recipient email | Yes |
-
----
-
-## AI (OpenAI)
-| Method | Endpoint | Description | Auth |
-|---|---|---|---|
-| GET | `/api/v1/cv/get-recommendation` | Get CV improvement suggestions from AI | Yes |
-
----
-
-# Services (Abdulmajed)
-
-| Service | Main Responsibility |
-|---|---|
-| `CVService` | CV CRUD, upload+parse flow, and AI recommendations orchestration |
-| `PDFParserService` | Extract text from uploaded CV PDF using PDFBox |
-| `N8nIntegrationService` | Send CV text to n8n webhook and map parsed CV fields |
-| `OpenAiService` | Generate CV improvement suggestions (cvImprovementSuggestions endpoint) |
-| `CvPdfGeneratorService` | Generate CV PDF using Thymeleaf HTML template (professional resume layout) |
-
----
-
-# Templates (Abdulmajed)
-- `resume.html` (Thymeleaf): Professional Resume HTML template used for CV PDF generation
+<h2>Project Resources</h2>
+<ul>
+  <li>ERD Diagram: <a href="#">https://lucid.app/lucidchart/0ac588ea-6c47-40ff-9f8c-2ddcc49f0a08/edit?invitationId=inv_dd8ca42c-dd44-4e7e-9f78-089609d925f1</a></li>
+  <li>Postman Documentation: <a href="#">https://documenter.getpostman.com/view/51095397/2sBXVbJZNn</a></li>
+  <li>Figma Design: <a href="#">https://www.figma.com/design/NIJsffp2YQOJp0cQm8bale/final-project?node-id=0-1&t=wBFLfeHHZzeEQ0Hg-1</a></li>
+  <li>Production Domain: <a href="https://sijal.tech">https://sijal.tech</a></li>
+</ul>
